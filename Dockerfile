@@ -13,10 +13,10 @@ ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64
 WORKDIR /app
 
 ARG BRANCH_NAME=data_engineers
-ARG DIR_NAME=cocolabhubs
+ARG DIR_NAME=co_lovehouse
 
 # Clone the Git repository. Here we dynamically specify the repository name using the variable defined earlier.
-RUN git clone https://github.com/btg1631/cocolabhubs ${DIR_NAME}
+RUN git clone https://github.com/btg1631/co_lovehouse ${DIR_NAME}
 
 # Changes the working directory to /app/${REPO_NAME}. This uses the variable to dynamically set the directory path.
 WORKDIR /app/${DIR_NAME}
