@@ -18,7 +18,7 @@ database = mongoClient["project_coliving"]
 room_infor = database['NOTICE_DATA']
 room_infor = database['REVIEW_DATA']
 room_infor = database['ROOM_DATA']
-
+# test
 # Chrome WebDriver의 capabilities 속성 사용
 capabilities = browser.capabilities
 from selenium.webdriver.common.by import By
