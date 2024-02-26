@@ -1,0 +1,15 @@
+table{
+    text-align: center;
+    border-collapse: collapse;
+    width: 600px;
+    height: 100px;
+    background-color: green;
+}
+.td1{
+    width: 400px;
+    color: white;
+}
+.td2{width:200px;}
+div{
+    background-color: white;
+}
