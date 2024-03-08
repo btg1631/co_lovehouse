@@ -7,6 +7,10 @@ from beanie import init_beanie
 from databases.connections import Database
 from models.users import USER_DATA
 from models.enters_users import ENTER_USER_DATA
+from models.notices import NOTICE_DATA
+from models.qnas import QNA
+collection_qna = Database(QNA)
+collection_notice = Database(NOTICE_DATA)
 collection_user = Database(USER_DATA)
 collection_enter_user = Database(ENTER_USER_DATA)
 
@@ -72,15 +76,20 @@ async def delete_enter_user(request: Request, object_id:PydanticObjectId):
     return templates.TemplateResponse(name="admin/admin_enter_users.html", context={'request':request
                                                                                     , 'users':enter_user_list})
 
-
+# 공지사항 보기
 @router.get("/adminnotices", response_class=HTMLResponse)
-async def adminmotice(request:Request):
-    return templates.TemplateResponse(name="admin/admin_notices.html", context={'request':request})
-
+async def adminnotice(request:Request):
+    notice_list = await collection_notice.get_all()
+    return templates.TemplateResponse(name="admin/admin_notices.html", context={'request':request,
+                                                                           'notices':notice_list})
+# 하우스관리 보기
 @router.get("/adminhouses", response_class=HTMLResponse)
 async def adminhouse(request:Request):
     return templates.TemplateResponse(name="admin/admin_houses.html", context={'request':request})
 
-@router.get("/adminfaqs", response_class=HTMLResponse)
+# qna 보기
+@router.get("/adminqnas", response_class=HTMLResponse)
 async def adminfaq(request:Request):
-    return templates.TemplateResponse(name="admin/admin_faqs.html", context={'request':request})
+    qna_list = await collection_qna.get_all()
+    return templates.TemplateResponse(name="admin/admin_faqs.html", context={'request':request,
+                                                                             'qnas':qna_list})
