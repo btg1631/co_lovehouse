@@ -9,66 +9,71 @@
         {% endblock %}
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="\css\main.css" >
-    <link rel="stylesheet" href="\css\find_rooms.css" >
+    <link rel="stylesheet" href="\css\main.css">
+    <link rel="stylesheet" href="\css\find_rooms.css">
     <link rel="stylesheet" href="\css\real_time_serch.css">
-    
     <!-- <link rel="stylesheet" href="\css\commons.css" > -->
 </head>
 
 <body>
     {% block nav_container %}
     <nav class="container">
-        <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <div class="col-md-3 mb-2 mb-md-0">
-                <ul class="nav col-12 col-md-auto mb-2 mb-md-0">
+        <header>
+            <div class="justify-content-center justify-content-md-between py-3 mb-4 border-bottom pb-5">
+                <ul class="row nav col-12 col-md-auto mb-2 mb-md-0">
+                    <li class="col-8 nav-item">
+                        <a class="nav-link" href="/">CO Love House</a>
+                    </li>
+                    <li class="col-2 nav-item">
+                        <a class="nav-link" href="/enter">CO Enter House</a>
+                    </li>
+                    <li class="col-2 nav-item">
+                        <a class="nav-link" href="/admin/admins">관리자 페이지</a>
+                    </li>
+                </ul>
+
+
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/" >CO Love House</a>
+                        <a class="nav-link" href="">운명의 방 찾기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/enter" >COEnter Love House</a>
+                        <a class="nav-link" href="/room/find_rooms">방 찾기</a>
                     </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/admins">관리자 페이지</a>
-                </li>
-            </ul>
-            </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">공지사항</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item" class="dropdown-item"><a href="/notice/notices">공지사항</a></li>
+                            <li class="nav-item" class="dropdown-item"><a href="/notice/introductions">사이트 소개</a></li>
+                            <form>
+                                <li class="nav-item" class="dropdown-item"><a href="/notice/qnas"
+                                        formmethod="get">QNA</a>
+                                </li>
+                            </form>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">커뮤니티</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item" class="dropdown-item"><a href="/community/communities">커뮤니티 소개</a></li>
+                            <li class="nav-item" class="dropdown-item"><a href="/community/promotions">프로모션</a></li>
+                            <li class="nav-item" class="dropdown-item"><a href="/community/moveinreviews">입주 후기</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">역제안</a>
+                    </li>
+                </ul>
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link"  href="/room/find_rooms">방 찾기</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">공지사항</a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item" class="dropdown-item"><a href="/notice/notices">공지사항</a></li>
-                        <li class="nav-item" class="dropdown-item"><a href="/notice/introductions">사이트 소개</a></li>
-                        <form>
-                            <li class="nav-item" class="dropdown-item"><a href="/notice/qnas" formmethod="get">QNA</a></li>
-                        </form>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">커뮤니티</a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item" class="dropdown-item"><a href="/community/communities">커뮤니티 소개</a></li>
-                        <li class="nav-item" class="dropdown-item"><a href="/community/promotions">프로모션</a></li>
-                        <li class="nav-item" class="dropdown-item"><a href="/community/moveinreviews">입주 후기</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <div class="col-md-3 text-end">
-                <form action="/login/logins" method="get">
-                    <button type="submit" class="btn btn-outline-primary me-2">Login</button>
-                </form>
-                <!-- <ul class="nav justify-content-end">
+                <ul class="nav justify-content-end">
+                    <form action="/login/logins" method="get">
+                        <button type="submit" class="btn btn-outline-primary me-2">Login</button>
+                    </form>
                     <li class="nav-item">
                         <a class="nav-link" href="/mypage/mypages">마이페이지</a>
                     </li>
-                </ul> -->
+                </ul>
+
             </div>
         </header>
         {% endblock %}
@@ -85,7 +90,8 @@
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">CO Love House</a></li>
                 <li class="nav-item"><a href="/room/find_rooms" class="nav-link px-2 text-body-secondary">방 찾기</a></li>
                 <li class="nav-item"><a href="/notice/notices" class="nav-link px-2 text-body-secondary">공지사항</a></li>
-                <li class="nav-item"><a href="/community/communities" class="nav-link px-2 text-body-secondary">커뮤니티</a></li>
+                <li class="nav-item"><a href="/community/communities" class="nav-link px-2 text-body-secondary">커뮤니티</a>
+                </li>
             </ul>
             <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
         </footer>
