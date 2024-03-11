@@ -3,8 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-webdriver_manager_directory = ChromeDriverManager().install()
-browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
+# webdriver_manager_directory = ChromeDriverManager().install()
+# browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
+# driver = webdriver.Chrome(ChromeDriverManager().install())
+chromedriver_path = "/usr/bin/chromedriver"
+browser = webdriver.Chrome()
 
 # 몽고db 저장
 from pymongo import MongoClient
@@ -98,48 +101,65 @@ for element in element_get:
         except:
             region = ""
 
-        try:
-            selector_region = "#house-show > div.house_intro_wrapper.detail1.scroll > div.house_intro"
-            element_region = inside_element_get.find_element(by=By.CSS_SELECTOR,value=selector_region)
-            region_test = element_region.text.split()
 
-        except:
-            region = ""    
+        brandType = "일반사업자"    
 
 
         contents_wrap = '#image-slider > div.tab_content_wrapper'
         detail_element_get = browser.find_elements(by=By.CSS_SELECTOR,value=contents_wrap)
+        
+        
+     
         # 테이블 검사해서 room이면 진입하는 로직 짜야됨
-        for i in detail_element_get:
-            # 보증금
-            try:
-                selector_value_deposti = "#house-show > div.room_info_wrapper.detail2.scroll > div.room_info > div:nth-child(2) > span.deposit"
-                element_deposit= inside_element_get(by=By.CSS_SELECTOR,value=selector_value_deposti)
-                deposit = element_deposit.text
-            except:
-                deposit = ""
-            # 월세
-            try:
-                selector_value_monthly_rent = "#house-show > div.room_info_wrapper.detail2.scroll > div.room_info > div:nth-child(2) > span.monthly_rent"
-                element_monthly_rent= inside_element_get(by=By.CSS_SELECTOR,value=selector_value_monthly_rent)
-                monthly_rent = element_monthly_rent.text
-            except:
-                monthly_rent = ""
-            # 몇인실인지
-            try:
-                selector_room_type = "#house-show > div.room_info_wrapper.detail2.scroll > div.room_info > div:nth-child(2) > span.type"
-                element_room_type= inside_element_get(by=By.CSS_SELECTOR,value=selector_room_type)
-                room_type = element_room_type.text
-            except:
-                room_type = ""
-            # 방이름
-            try:
-                selector_room_name = "#house-show > div.room_info_wrapper.detail2.scroll > div.room_info > div:nth-child(2) > span.name"
-                element_room_name= inside_element_get(by=By.CSS_SELECTOR,value=selector_room_name)
-                room_name = element_room_name.text
-            except:
-                room_name = ""
 
+        incounter = -1
+        for i in detail_element_get:
+            # 페이지 구성이 0부터 시작... 밑으로 내리기 귀찮...
+            incounter += 1
+            menu_element_get = browser.find_element(by=By.CSS_SELECTOR,value=f'#image_tab_{incounter} > div.room_info > div.room_name')
+            menu_name_list = list(menu_element_get.split())
+            if menu_name_list[0] == 'Room':
+                # 기본 타입 초기화
+                roomType = ''
+                gender = '공용'
+                room_name = ""
+                room_name += menu_name_list[0]
+                room_name += ' '
+                room_name += menu_name_list[1]
+                
+                for j in menu_name_list:
+                    # 성별
+                    if '여성' in j:
+                        gender = '여'
+                    elif '남성' in j:
+                        gender = '남'
+
+                    # 평수
+                    if 'm' in j:
+                        py = j
+
+                    #인실
+                    if '인실' in j:
+                        roomType = j
+
+                # 보증금
+                try:
+                    selector_value_deposti = f"#image_tab_{incounter} > div.room_info > div.cost_list > div.cost_item.deposit > span > span > em"
+                    element_deposit= inside_element_get(by=By.CSS_SELECTOR,value=selector_value_deposti)
+                    deposit = element_deposit.text
+                except:
+                    deposit = ""
+                # 월세
+                try:
+                    selector_value_monthly_rent = f"#image_tab_{incounter} > div.room_info > div.cost_list > div.cost_item.monthly_rent > span > span > em"
+                    element_monthly_rent= inside_element_get(by=By.CSS_SELECTOR,value=selector_value_monthly_rent)
+                    monthly_rent = element_monthly_rent.text
+                except:
+                    monthly_rent = ""
+
+
+            else:
+                pass
 
     except :
         pass   
