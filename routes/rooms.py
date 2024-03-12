@@ -58,3 +58,29 @@ async def room_detail(request:Request, object_id:PydanticObjectId):
     return templates.TemplateResponse(name="room/room_details.html", context={'request':request,
                                                                             'search_dict':search_dict,
                                                                             'rooms':room_list})
+
+from fastapi import APIRouter, File, UploadFile
+from fastapi.responses import HTMLResponse
+import pickle
+from jinja2 import Environment, FileSystemLoader
+@router.get("/counterproposal", response_class=HTMLResponse)
+async def counterproposal(request:Request):
+    return templates.TemplateResponse(name="room/Counterproposal.html", context={'request':request})
+
+async def create_upload_file(file: UploadFile = File(...)):
+    contents = await file.read()
+    data_and_settings = pickle.loads(contents)  # 파일 내용을 불러옴
+
+    # Jinja2 환경 설정
+    env = Environment(loader=FileSystemLoader('templates'))
+    template = env.get_template('chart.html')
+
+    # HTML 페이지에 전달할 데이터 설정
+    data = data_and_settings['data']
+    title = data_and_settings['title']
+
+    # HTML 페이지 생성
+    html_content = template.render(data=data, title=title)
+    return HTMLResponse(content=html_content)
+
+
