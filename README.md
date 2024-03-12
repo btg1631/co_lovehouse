@@ -21,7 +21,7 @@
    2. 투어하기 예약 및 이용자들의 후기 확인
    3. 커뮤니티에서 글쓰기, 검색, 삭제 기능
    4. 관리자 - 회원관리, 매물관리
-
+### ■ [스케쥴러 JIRA 사용](https://waity0912.atlassian.net/jira/software/projects/COLH/boards/2/timeline?timeline=MONTHS)
 
 ### 📚 웹 스크래핑 대상
 ---

@@ -8,6 +8,7 @@ class REVIEW_DATA(Document):
     review_title: Optional[str] = None
     review_content: Optional[str] = None
     review_image: Optional[str] = None
+    editorContent : Optional[str] = None
 
     class Settings:
         name = "REVIEW_DATA"

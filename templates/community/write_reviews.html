@@ -5,27 +5,57 @@
 {% endblock %}
 
 {% block main_container %}
-<div class="container" >
-<h2>글쓰기</h2>
-<div>
-    <form action="">
-        <div>
-            <textarea name="review_title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required>
+<!-- Quill의 CSS 파일 링크 -->
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-beta.0/dist/quill.snow.css" rel="stylesheet" />
+<!-- Quill 편집기의 스타일 지정 -->
+<style>
+    #editor {
+        height: 10rem;
+        font-size: 1.1rem;
+    }
+</style>
+
+<div class="container">
+    <h2>글쓰기</h2>
+    <div>
+        <form action="">
+            <div>
+                <textarea name="review_title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required>
                 {%- if review %}{{ review.review_title }}{% endif -%}
             </textarea>
-        </div>
-        <div>
-            <textarea name="review_content" id="ucontent" placeholder="내용" required>
-                {%- if review %}{{ review.review_content }}{% endif -%}
-            </textarea>
-        </div>
+            </div>
+            <div>
+                <div>
+                    <label for="comment">Comments with Quill:</label>
+                    <!-- Quill 편집기를 적용할 div 요소 -->
+                    <input type="hidden" name="editorContent" id="editorContent">
+                    <div id="editor">{%- if review %}{{ review.review_content }}{% endif -%}</div>
+                </div>
+                <!-- <textarea name="review_content" id="ucontent" placeholder="내용" required>
+                    {%- if review %}{{ review.review_content }}{% endif -%}
+                </textarea> -->
+            </div>
             <input name="review_image" type="file" />
-        <div>
-            <button type="submit" class="searchbutton btn btn-outline-primary" formmethod="post" formaction="/community/{% if review %}edit_review/{{ review.id }}{% else %}writereviewend{% endif %}">
-                {% if review %}수정 완료{% else %}글 작성{% endif %}</button>
-        </div>
-    </form>
+            <div>
+                <button type="submit" class="searchbutton btn btn-outline-primary" formmethod="post"
+                    formaction="/community/{% if review %}edit_review/{{ review.id }}{% else %}writereviewend{% endif %}">
+                    {% if review %}수정 완료{% else %}글 작성{% endif %}</button>
+            </div>
+        </form>
+    </div>
 </div>
+<!-- Quill의 JavaScript 파일 링크 -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-beta.0/dist/quill.js"></script>
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
 
-</div>
+    let form_first = document.querySelector('#form_first')
+    form_first.onsubmit = function(event) {
+      let editorContentInput = document.querySelector('#editorContent');
+      editorContentInput.value = quill.root.innerHTML;
+
+    };    
+</script>
 {% endblock %}
