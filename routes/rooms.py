@@ -4,17 +4,14 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 from beanie import init_beanie
 
-# from toy.databases.connections import Database
-
-# from toy.models.users import user
-# collection_user = Database(user)
-
 router = APIRouter()
 
 templates = Jinja2Templates(directory="templates/")
 from databases.connections import Database
 from models.rooms import ROOM_DATA
 collection_rooms = Database(ROOM_DATA)
+from models.data_charts import Average_Price_by_Region
+collection_charts = Database(Average_Price_by_Region)
 
 
 # 방 찾기
@@ -59,28 +56,19 @@ async def room_detail(request:Request, object_id:PydanticObjectId):
                                                                             'search_dict':search_dict,
                                                                             'rooms':room_list})
 
-from fastapi import APIRouter, File, UploadFile
-from fastapi.responses import HTMLResponse
-import pickle
-from jinja2 import Environment, FileSystemLoader
-@router.get("/counterproposal", response_class=HTMLResponse)
-async def counterproposal(request:Request):
-    return templates.TemplateResponse(name="room/Counterproposal.html", context={'request':request})
 
-async def create_upload_file(file: UploadFile = File(...)):
-    contents = await file.read()
-    data_and_settings = pickle.loads(contents)  # 파일 내용을 불러옴
+# 운명의 방 찾기
+@router.get("/ML_find_rooms")
+async def ML_find_rooms(request:Request):
+    return templates.TemplateResponse(name="room/ML_find_rooms.html", context={'request':request})
 
-    # Jinja2 환경 설정
-    env = Environment(loader=FileSystemLoader('templates'))
-    template = env.get_template('chart.html')
 
-    # HTML 페이지에 전달할 데이터 설정
-    data = data_and_settings['data']
-    title = data_and_settings['title']
+# 구글 차트
+@router.get("/data_chart")
+async def Counterproposal(request:Request):
+    data_charts = await collection_charts.get_all()
 
-    # HTML 페이지 생성
-    html_content = template.render(data=data, title=title)
-    return HTMLResponse(content=html_content)
+    return templates.TemplateResponse(name="room/Counterproposal.html", context={'request':request,
+                                                                                 'data_charts':data_charts})
 
 

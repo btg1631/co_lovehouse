@@ -22,7 +22,7 @@
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="">운명의 방 찾기</a>
+                    <a class="nav-link" href="/room/ML_find_rooms">운명의 방 찾기</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/room/find_rooms">방 찾기</a>
@@ -44,7 +44,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">역제안</a>
+                    <a class="nav-link" href="/room/counterproposal">역제안</a>
                 </li>
             </ul>
 
@@ -63,9 +63,9 @@
     {% block main_container %}
     <main class="find_rooms">
         <div class="row">
-            <!-- 방 찾기 부분 -->
+
+            <!-- 검색 부분 -->
             <div class="col-6">
-                <!-- 검색 부분 -->
                 <form action="">
                     <div class="search_rooms_box">
                         <div class="search_rooms row">
@@ -109,44 +109,108 @@
                 {% if rooms == False %}
                 <p>{{ message }}</p>
                 {% else %}
-                <!-- 방 나열 부분 -->
-                <div class="album py-3 bg-body-tertiary">
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                            {% for room in rooms %}
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <a href="/room/room_details/{{room.id}}">
-                                        <div class="card-img-top">
-                                            <img class="roomimg" src="{{ room.room_image }}">
-                                        </div>
-                                        <div class="card-body">
-                                            <span class="brand">{{ room.room_brand }}</span>
-                                            <span class="local">{{ room.room_local }}</span>
-                                            <span class="title">{{ room.room_title }}</span>
-                                            <div class="room_type">{{ room.room_type }}</div>
-                                            <div class="room_size">{{ room.room_size }}</div>
-                                            <span class="favorite">
-                                                <div class="btn-group">
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-outline-danger">찜</button>
-                                                </div>
-                                            </span>
-                                        </div>
-                                    </a>
+                <div class="col-6"></div>
+            </div>
+            <div class="row">
+                <!-- 방 찾기 부분 -->
+                <div class="col-6">
+
+                    <!-- 방 나열 부분 -->
+                    <div class="album py-3 bg-body-tertiary" style="overflow:scroll; height:800px;">
+                        <div class="container">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                {% for room in rooms %}
+                                <div class="col">
+                                    <div class="card shadow-sm">
+                                        <a href="/room/room_details/{{room.id}}">
+                                            <div class="card-img-top">
+                                                <img class="roomimg" src="{{ room.room_image }}">
+                                            </div>
+                                            <div class="card-body">
+                                                <span class="brand">{{ room.room_brand }}</span>
+                                                <span class="local">{{ room.room_local }}</span>
+                                                <span class="title">{{ room.room_title }}</span>
+                                                <div class="room_type">{{ room.room_type }}</div>
+                                                <div class="room_size">{{ room.room_size }}</div>
+                                                <span class="favorite">
+                                                    <div class="btn-group">
+                                                        <button type="button"
+                                                            class="btn btn-sm btn-outline-danger">찜</button>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
                         </div>
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
-            </div>
 
-            <!-- 지도 부분 -->
-            <div class="col-6">
-                <img src="/images/map.PNG" alt="">
+                <!-- 지도 부분 -->
+                <div class="col-6">
+                    <div class="" id="maps"></div>
+                </div>
             </div>
         </div>
+
+        <!-- Bootstrap Bundle with Popper.js and Bootstrap JS -->
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+
+        <!-- google maps -->
+        <script>
+            let map;
+
+            // Coordinates and Location Names
+            let locations = [
+                { lat: 37.5666791, lng: 126.9782914, name: '서울' },
+                { lat: 37.566535, lng: 126.9779692, name: '광화문' },
+                { lat: 37.5586867, lng: 126.9782364, name: '명동' }
+            ];
+            async function initMap() {
+                const { Map } = await google.maps.importLibrary("maps");
+
+                // 아래 표시 지도
+                map_center = new Map(document.querySelector("#maps"), {         // map_center 지도에 marker 표시하기 //
+                    center: { lat: 37.5666791, lng: 126.9782914 },   // markers 위한 중앙 값 //
+                    zoom: 13,
+                });
+                // Add Markers and Info Windows
+                for (let i = 0; i < locations.length; i++) {
+                    let marker = new google.maps.Marker({
+                        position: locations[i],
+                        map: map_center,
+                        title: locations[i].name
+                    });
+
+                    // marker 풍선말 넣기
+                    let infowindow = new google.maps.InfoWindow({
+                        content: locations[i].name
+                    });
+                    marker.addListener('click', function () {
+                        infowindow.open(map_center, this);
+                    });
+                }
+
+                // map = new Map(document.querySelector("#maps"), {
+                //     center: { lat: 37.5650012, lng: 127.1746585 },   // postman에서 얻은 우리집 좌표(lat,lng) //
+                //     zoom: 14,
+                // });
+
+            }
+        </script>
+        <!-- Google Maps API Script -->
+        <!-- 내 Google Maps Platform API 키 : AIzaSyAuHnEEdm3a2zGUAj1RUApmRHlHYQC -->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuHnEEdm3a2zGUAj1RUApmRHlHYQC-1uE&callback=initMap"
+            async defer></script>
+
+        <style>
+            #maps {
+                height: 800px;
+            }
+        </style>
 
         {% endblock %}
