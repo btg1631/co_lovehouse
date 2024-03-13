@@ -8,56 +8,56 @@
 <div class="container">
     <h2>역제안</h2>
     <div class="row">
-        <div id="chart_div"></div>
+        <div class="col" style="height:300px" id="chart_div"></div>
+        <div class="col" id="lineChart"></div>
     </div>
 </div>
 
-
-
-
 {% endblock %}
+
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
-    // 패키지, 어디에다가, 어떤차트??
-    // Load the Visualization API and the corechart package.
     google.charts.load('current', { 'packages': ['corechart'] });
-
-    // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
-
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it.
     function drawChart() {
 
-        var dataFromServer = JSON.parse('{{ data_charts | tojson | safe }}');
+        // var dataFromServer = JSON.parse('{{ data_charts | tojson | safe }}');
         // chart 사용 종류 지정
         // data, chart 종류, option(꾸미기)
         // Create the data table.
         var data = new google.visualization.DataTable();   // DatdaTable : class   // data : class
         data.addColumn('string', 'region');
         data.addColumn('number', 'rentFee');
-        dataFromServer.forEach(function (item) {
-            // item.rentFee를 숫자로 변환하여 추가
-            data.addRow([item.region, Number(item.rentFee)]);
+        data.addColumn('string', 'Type');
+
+        // 서버로부터 받은 data_charts JSON을 파싱하여 사용
+        var data_charts = JSON.parse('{{ data_charts | tojson | safe }}');
+
+
+        // 데이터프레임의 각 행을 순회하며 차트 데이터에 추가
+        data_charts.forEach(function (row) {
+            data.addRow([row.region, row.rentFee, row.type]);
         });
+
 
         // Set chart options
         var options = {
-            'title': 'How Much Pizza I Ate Last Night',
-            chartArea: { width: '50%' },
+            'title': 'Rent Fee by Region and Type',
+            // chartArea: { width: '50%' },
             hAxis: {
-                title: '월세',
+                title: 'Region',
                 minValue: 0
             },
             vAxis: {
-                title: '지역'
+                title: 'rentFee'
             }
         };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+
     }
 </script>

@@ -8,6 +8,7 @@ from models.enters_rooms import ENTER_ROOM_DATA
 from models.qnas import QNA
 from models.notices import NOTICE_DATA
 from motor.motor_asyncio import AsyncIOMotorClient
+from models.data_charts import Average_Price_by_Region
 from pydantic import BaseModel
 
 # 변경 후 코드
@@ -21,7 +22,7 @@ class Settings(BaseSettings):
         await init_beanie(database=client.get_default_database(),
                           document_models=[USER_DATA, ROOM_DATA,
                                            REVIEW_DATA,ENTER_USER_DATA,ENTER_ROOM_DATA,
-                                           QNA, NOTICE_DATA])
+                                           QNA, NOTICE_DATA, Average_Price_by_Region])
     
     class Config:
         env_file = ".env"
@@ -86,3 +87,10 @@ class Database:
         if documents:
             return documents, pagination
         return False 
+        
+
+    async def fetch_data_to_dataframe():
+        collection_instance = Database()  # YourCollectionClass 인스턴스 생성
+        documents = await collection_instance.get_all()  # 비동기적으로 데이터 가져오기
+        df = pd.DataFrame(documents)  # 데이터프레임으로 변환
+        return df

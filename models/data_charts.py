@@ -6,8 +6,8 @@ from pydantic import BaseModel, EmailStr
 # 개발자 실수로 들어가는 field 제한
 class Average_Price_by_Region(Document):
     region: Optional[str] = None
-    deposit: Optional[str] = None
-    rentFee: Optional[str] = None
+    deposit: Optional[float] = None
+    rentFee: Optional[float] = None
     type: Optional[str] = None
   
     class Settings:

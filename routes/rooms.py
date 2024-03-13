@@ -63,12 +63,19 @@ async def ML_find_rooms(request:Request):
     return templates.TemplateResponse(name="room/ML_find_rooms.html", context={'request':request})
 
 
+
 # 구글 차트
 @router.get("/data_chart")
 async def Counterproposal(request:Request):
     data_charts = await collection_charts.get_all()
+    get_list = []
 
+    for i in list(data_charts):
+        dict_chart = {
+            'Region' : i.region,
+            'rentFee' : i.rentFee,
+            'type' : i.type
+            }
+        get_list.append(dict_chart)
     return templates.TemplateResponse(name="room/Counterproposal.html", context={'request':request,
-                                                                                 'data_charts':data_charts})
-
-
+                                                                                 'data_charts':get_list})
