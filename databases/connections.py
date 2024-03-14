@@ -8,7 +8,7 @@ from models.enters_rooms import ENTER_ROOM_DATA
 from models.qnas import QNA
 from models.notices import NOTICE_DATA
 from motor.motor_asyncio import AsyncIOMotorClient
-from models.data_charts import Average_Price_by_Region
+from models.data_charts import Average_Price_by_Region, combined_data_rentFee, combined_data_deposit
 from pydantic import BaseModel
 
 # 변경 후 코드
@@ -22,7 +22,8 @@ class Settings(BaseSettings):
         await init_beanie(database=client.get_default_database(),
                           document_models=[USER_DATA, ROOM_DATA,
                                            REVIEW_DATA,ENTER_USER_DATA,ENTER_ROOM_DATA,
-                                           QNA, NOTICE_DATA, Average_Price_by_Region])
+                                           QNA, NOTICE_DATA, Average_Price_by_Region,
+                                           combined_data_rentFee, combined_data_deposit])
     
     class Config:
         env_file = ".env"

@@ -10,8 +10,10 @@ templates = Jinja2Templates(directory="templates/")
 from databases.connections import Database
 from models.rooms import ROOM_DATA
 collection_rooms = Database(ROOM_DATA)
-from models.data_charts import Average_Price_by_Region
+from models.data_charts import Average_Price_by_Region, combined_data_rentFee, combined_data_deposit
 collection_charts = Database(Average_Price_by_Region)
+collection_charts_rentfee = Database(combined_data_rentFee)
+collection_charts_deposit = Database(combined_data_deposit)
 
 
 # 방 찾기
@@ -68,14 +70,54 @@ async def ML_find_rooms(request:Request):
 @router.get("/data_chart")
 async def Counterproposal(request:Request):
     data_charts = await collection_charts.get_all()
-    get_list = []
+    region_list = ['region']
+    rent_list =['rentFee']
+    deposit_list =['deposit']
+    type_list=['type']
 
     for i in list(data_charts):
-        dict_chart = {
-            'Region' : i.region,
-            'rentFee' : i.rentFee,
-            'type' : i.type
-            }
-        get_list.append(dict_chart)
+        
+        region_list.append(i.region)
+        rent_list.append(i.rentFee)
+        deposit_list.append(i.deposit)
+        type_list.append(i.type)
+        
+    get_list = [region_list, rent_list, type_list, deposit_list]
+
+
+    data_charts_rentfee = await collection_charts_rentfee.get_all()
+    rentfee_col_0_list = ['col_0']
+    rentfee_col_1_list =['col_1']
+    rentfee_describe_list =['describe']
+    rentfee_type_list=['type']
+
+    for i in list(data_charts_rentfee):
+        
+        rentfee_col_0_list.append(i.col_0)
+        rentfee_col_1_list.append(i.col_1)
+        rentfee_describe_list.append(i.describe)
+        rentfee_type_list.append(i.type)
+        
+    get_list_rentfee = [rentfee_col_0_list, rentfee_col_1_list, rentfee_describe_list, rentfee_type_list]
+
+
+    data_charts_deposit = await collection_charts_deposit.get_all()
+    deposit_col_0_list = ['col_0']
+    deposit_col_1_list =['col_1']
+    deposit_describe_list =['describe']
+    deposit_type_list=['type']
+
+    for i in list(data_charts_deposit):
+        
+        deposit_col_0_list.append(i.col_0)
+        deposit_col_1_list.append(i.col_1)
+        deposit_describe_list.append(i.describe)
+        deposit_type_list.append(i.type)
+        
+    get_list_deposit = [deposit_col_0_list, deposit_col_1_list, deposit_describe_list, deposit_type_list]
+
+
     return templates.TemplateResponse(name="room/Counterproposal.html", context={'request':request,
-                                                                                 'data_charts':get_list})
+                                                                                 'data_charts':get_list,
+                                                                                 'data_charts_rentfee':get_list_rentfee,
+                                                                                 'data_charts_deposit':get_list_deposit})

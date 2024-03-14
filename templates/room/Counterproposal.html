@@ -5,59 +5,243 @@
 {% endblock %}
 
 {% block main_container %}
-<div class="container">
-    <h2>역제안</h2>
-    <div class="row">
-        <div class="col" style="height:300px" id="chart_div"></div>
-        <div class="col" id="lineChart"></div>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6" id="chart_div"></div>
+            <div class="col-6" id="chart_div_deposit"></div>
+        </div>
+        <div class="row">
+            <div class="col-6" id="chart_describe_rentfee_0"></div>
+            <div class="col-6" id="chart_describe_deposit_0"></div>
+        </div>
+        <div class="row">
+            <div class="col-6" id="chart_describe_rentfee_1"></div>
+            <div class="col-6" id="chart_describe_deposit_1"></div>
+        </div>
     </div>
-</div>
+</body>
 
-{% endblock %}
-
+<!-- Bootstrap Bundle with Popper.js and Bootstrap JS -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
+
     function drawChart() {
-
-        // var dataFromServer = JSON.parse('{{ data_charts | tojson | safe }}');
-        // chart 사용 종류 지정
-        // data, chart 종류, option(꾸미기)
-        // Create the data table.
-        var data = new google.visualization.DataTable();   // DatdaTable : class   // data : class
-        data.addColumn('string', 'region');
-        data.addColumn('number', 'rentFee');
-        data.addColumn('string', 'Type');
-
-        // 서버로부터 받은 data_charts JSON을 파싱하여 사용
         var data_charts = JSON.parse('{{ data_charts | tojson | safe }}');
 
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'region');
+        data.addColumn('number', 'rentFee');
+        data.addColumn({ type: 'string', role: 'style' }); // style 열 추가
 
-        // 데이터프레임의 각 행을 순회하며 차트 데이터에 추가
-        data_charts.forEach(function (row) {
-            data.addRow([row.region, row.rentFee, row.type]);
-        });
+        // 데이터 추가
+        for (var i = 1; i < data_charts[0].length; i++) {
+            var region = data_charts[0][i];
+            var rentFee = data_charts[1][i];
+            var color = data_charts[2][i] == '부동산 일반 매물' ? 'blue' : 'red'; // 부동산 일반 매물이면 파란색, 그렇지 않으면 빨간색
+            data.addRow([region, rentFee, color]);
+        }
 
-
-        // Set chart options
         var options = {
-            'title': 'Rent Fee by Region and Type',
-            // chartArea: { width: '50%' },
-            hAxis: {
-                title: 'Region',
-                minValue: 0
-            },
-            vAxis: {
-                title: 'rentFee'
-            }
+            title: 'Rent Fee by Region and Type',
+            width: 600,
+            height: 500,
+            hAxis: { title: 'Region' },
+            vAxis: { title: 'RentFee' }
+
+
         };
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
+
+
+<script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data_charts = JSON.parse('{{ data_charts | tojson | safe }}');
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'region');
+            data.addColumn('number', 'deposit');
+            data.addColumn({ type: 'string', role: 'style' }); // style 열 추가
+
+            // 데이터 추가
+            for (var i = 1; i < data_charts[0].length; i++) {
+                var region = data_charts[0][i];
+                var deposit = data_charts[3][i];
+                var color = data_charts[2][i] == '부동산 일반 매물' ? 'blue' : 'red'; // 부동산 일반 매물이면 파란색, 그렇지 않으면 빨간색
+                data.addRow([region, deposit, color]);
+            }
+
+            var options = {
+                title: 'Deposit by Region and Type',
+                width: 600,
+                height: 500,
+                hAxis: { title: 'Region' },
+                vAxis: { title: 'Deposit' }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_deposit'));
+            chart.draw(data, options);
+
+        }
+
+</script>
+
+
+
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data_charts = JSON.parse('{{ data_charts_rentfee | tojson | safe }}');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'describe');
+        data.addColumn('number', 'rentfee');
+        data.addColumn({ type: 'string', role: 'style' }); // style 열 추가
+
+        // 데이터 추가
+        for (var i = 1; i < data_charts[0].length; i++) {
+            var describe = data_charts[2][i];
+            var rentfee = data_charts[0][i];
+            var color = data_charts[3][i] == '코리빙-일반사업자' ? 'blue' : 'red';
+            data.addRow([describe, rentfee, color]);
+        }
+
+        var options = {
+            title: '1인실 rentfee describe',
+            width: 600,
+            height: 500,
+            hAxis: { title: 'describe' },
+            vAxis: { title: 'rentfee' }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_describe_rentfee_0'));
         chart.draw(data, options);
 
     }
+
 </script>
+
+
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data_charts = JSON.parse('{{ data_charts_deposit | tojson | safe }}');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'describe');
+        data.addColumn('number', 'deposit');
+        data.addColumn({ type: 'string', role: 'style' }); // style 열 추가
+
+        // 데이터 추가
+        for (var i = 1; i < data_charts[0].length; i++) {
+            var describe = data_charts[2][i];
+            var deposit = data_charts[0][i];
+            var color = data_charts[3][i] == '코리빙-일반사업자' ? 'blue' : 'red';
+            data.addRow([describe, deposit, color]);
+        }
+
+        var options = {
+            title: '1인실 deposit describe',
+            width: 600,
+            height: 500,
+            hAxis: { title: 'describe' },
+            vAxis: { title: 'deposit' }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_describe_deposit_0'));
+        chart.draw(data, options);
+
+    }
+
+</script>
+
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data_charts = JSON.parse('{{ data_charts_rentfee | tojson | safe }}');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'describe');
+        data.addColumn('number', 'rentfee');
+        data.addColumn({ type: 'string', role: 'style' }); // style 열 추가
+
+        // 데이터 추가
+        for (var i = 1; i < data_charts[0].length; i++) {
+            var describe = data_charts[2][i];
+            var rentfee = data_charts[1][i];
+            var color = data_charts[3][i] == '코리빙-일반사업자' ? 'blue' : 'red';
+            data.addRow([describe, rentfee, color]);
+        }
+
+        var options = {
+            title: '1인실 rentfee describe',
+            width: 600,
+            height: 500,
+            hAxis: { title: 'describe' },
+            vAxis: { title: 'rentfee' }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_describe_rentfee_1'));
+        chart.draw(data, options);
+
+    }
+
+</script>
+
+
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data_charts = JSON.parse('{{ data_charts_deposit | tojson | safe }}');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'describe');
+        data.addColumn('number', 'deposit');
+        data.addColumn({ type: 'string', role: 'style' }); // style 열 추가
+
+        // 데이터 추가
+        for (var i = 1; i < data_charts[0].length; i++) {
+            var describe = data_charts[2][i];
+            var deposit = data_charts[1][i];
+            var color = data_charts[3][i] == '코리빙-일반사업자' ? 'blue' : 'red';
+            data.addRow([describe, deposit, color]);
+        }
+
+        var options = {
+            title: '1인실 deposit describe',
+            width: 600,
+            height: 500,
+            hAxis: { title: 'describe' },
+            vAxis: { title: 'deposit' }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_describe_deposit_1'));
+        chart.draw(data, options);
+
+    }
+
+</script>
+
+{% endblock %}
