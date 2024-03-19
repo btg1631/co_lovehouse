@@ -71,9 +71,9 @@ async def ML_find_rooms(request:Request):
 async def Counterproposal(request:Request):
     data_charts = await collection_charts.get_all()
     region_list = ['region']
-    rent_list =['rentFee']
-    deposit_list =['deposit']
-    type_list=['type']
+    rent_list = ['rentFee']
+    deposit_list = ['deposit']
+    type_list = ['type']
 
     for i in list(data_charts):
         
@@ -87,9 +87,9 @@ async def Counterproposal(request:Request):
 
     data_charts_rentfee = await collection_charts_rentfee.get_all()
     rentfee_col_0_list = ['col_0']
-    rentfee_col_1_list =['col_1']
-    rentfee_describe_list =['describe']
-    rentfee_type_list=['type']
+    rentfee_col_1_list = ['col_1']
+    rentfee_describe_list = ['describe']
+    rentfee_type_list = ['type']
 
     for i in list(data_charts_rentfee):
         
@@ -103,9 +103,9 @@ async def Counterproposal(request:Request):
 
     data_charts_deposit = await collection_charts_deposit.get_all()
     deposit_col_0_list = ['col_0']
-    deposit_col_1_list =['col_1']
-    deposit_describe_list =['describe']
-    deposit_type_list=['type']
+    deposit_col_1_list = ['col_1']
+    deposit_describe_list = ['describe']
+    deposit_type_list = ['type']
 
     for i in list(data_charts_deposit):
         
