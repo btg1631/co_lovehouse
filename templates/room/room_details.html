@@ -97,7 +97,59 @@
         <div>기타</div><div>{{ rooms.room_any }}</div>
         <hr>
         <div> 위치 및 교통 </div>
-        <img src="/images/map.PNG" alt="">
+        <div id="maps"></div>
     </div>
 </div>
+
+
+<!-- Bootstrap Bundle with Popper.js and Bootstrap JS -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+
+<!-- google maps -->
+<script>
+    let map;
+
+    // Coordinates and Location Names
+    let locations = [
+        { lat: 37.5666791, lng: 126.9782914, name: '서울' },
+    ];
+    async function initMap() {
+        const { Map } = await google.maps.importLibrary("maps");
+
+        // 아래 표시 지도
+        map_center = new Map(document.querySelector("#maps"), {         // map_center 지도에 marker 표시하기 //
+            center: { lat: 37.5666791, lng: 126.9782914 },   // markers 위한 중앙 값 //
+            zoom: 13,
+        });
+        // Add Markers and Info Windows
+        for (let i = 0; i < locations.length; i++) {
+            let marker = new google.maps.Marker({
+                position: locations[i],
+                map: map_center,
+                title: locations[i].name
+            });
+
+            // marker 풍선말 넣기
+            let infowindow = new google.maps.InfoWindow({
+                content: locations[i].name
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map_center, this);
+            });
+        }
+    }
+</script>
+<!-- Google Maps API Script -->
+<!-- 내 Google Maps Platform API 키 : AIzaSyAuHnEEdm3a2zGUAj1RUApmRHlHYQC -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuHnEEdm3a2zGUAj1RUApmRHlHYQC-1uE&callback=initMap" async
+    defer></script>
+
+<style>
+    #maps {
+        height: 500px;
+    }
+</style>
+
+
+
 {% endblock %}
