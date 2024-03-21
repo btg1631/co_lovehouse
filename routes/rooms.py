@@ -19,7 +19,7 @@ collection_charts_deposit = Database(combined_data_deposit)
 # 방 찾기
 @router.get("/find_rooms", response_class=HTMLResponse)
 async def find_rooms(request:Request):
-    search_dict = {'room_brand': 'none', 'room_type': 'none', 'search': ''}
+    search_dict = {'brandType': 'none', 'roomtype': 'none', 'search': ''}
     room_list = await collection_rooms.get_all()
     return templates.TemplateResponse(name="room/find_rooms.html", context={'request':request,
                                                                             'search_dict':search_dict,
@@ -33,9 +33,9 @@ async def find_rooms(request:Request):
     if search_dict['search'] != '':
         regex_pattern = re.compile(search_dict['search'], re.IGNORECASE)
         conditions['$or'] = [
-            {'room_brand': {'$regex': regex_pattern}},
-            {'room_local': {'$regex': regex_pattern}},
-            {'room_title': {'$regex': regex_pattern}}
+            {'brandType': {'$regex': regex_pattern}},
+            {'region': {'$regex': regex_pattern}},
+            {'roomName': {'$regex': regex_pattern}}
         ]
 
     room_list = await collection_rooms.getsbyconditions(conditions)

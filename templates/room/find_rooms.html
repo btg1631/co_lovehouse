@@ -28,7 +28,7 @@
                     </li>
                     <li class="col-7"></li>
                     <li class="col-2 nav-item">
-                        <a class="nav-link text-body-secondary" href="/enter">매물 등록하기</a>
+                        <a class="nav-link btn border border-2 border-danger-subtle rounded-4" style="margin-top: 16px;" href="/enter">매물 등록하러 가기</a>
                     </li>
                 </ul>
 
@@ -139,14 +139,14 @@
                                     <div class="card shadow-sm">
                                         <a href="/room/room_details/{{room.id}}">
                                             <div class="card-img-top">
-                                                <img class="roomimg" src="{{ room.room_image }}">
+                                                <img class="roomimg" src="{{ room.imgUrl }}">
                                             </div>
                                             <div class="card-body">
-                                                <span class="brand">{{ room.room_brand }}</span>
-                                                <span class="local">{{ room.room_local }}</span>
-                                                <span class="title">{{ room.room_title }}</span>
-                                                <div class="room_type">{{ room.room_type }}</div>
-                                                <div class="room_size">{{ room.room_size }}</div>
+                                                <span class="brand">{{ room.brandType }}</span>
+                                                <span class="local">{{ room.region }}</span>
+                                                <span class="title">{{ room.roomName }}</span>
+                                                <div class="room_type">{{ room.roomType }}</div>
+                                                <div class="room_size">{{ room.py }}㎡</div>
                                                 <span class="favorite">
                                                     <div class="btn-group">
                                                         <button type="button"

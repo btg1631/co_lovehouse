@@ -7,9 +7,9 @@
 {% block main_container %}
 <div class="container" style="padding-top: 70px; padding-bottom: 100px; text-align: center; ">
     <!-- 제목 -->
-    <span class="room_details brand">{{ rooms.room_brand }} </span>
-    <span class="room_details local">{{ rooms.room_local }} </span>
-    <span class="room_details title">{{ rooms.room_title }}</span>
+    <span class="room_details brand">{{ rooms.brandType }} </span>
+    <span class="room_details local">{{ rooms.region }} </span>
+    <span class="room_details title">{{ rooms.roomName }}</span>
     <hr>
     <!-- 이미지 슬라이드 -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
@@ -21,13 +21,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ rooms.room_image }}" class="d-block w-100" style=" height: 800px;" alt="...">
+                <img src="{{ rooms.imgUrl }}" class="d-block w-100" style=" height: 800px;" alt="...">
             </div>
             <div class="carousel-item">
                 {% if rooms.room_image_two %}
-                <img src="{{ rooms.room_image_two }}" class="d-block w-100" style=" height: 800px;" alt="...">
+                <img src="{{ rooms.imgUrl }}" class="d-block w-100" style=" height: 800px;" alt="...">
                 {% else %}
-                <img src="{{ rooms.room_image }}" class="d-block w-100" style=" height: 800px;" alt="...">
+                <img src="{{ rooms.imgUrl }}" class="d-block w-100" style=" height: 800px;" alt="...">
                 {% endif %}
             </div>
         </div>
@@ -84,19 +84,18 @@
     </div>
     <!-- 내용 -->
     <div class="tab-list text-center">
-        <div> 지점 소개 </div>
-        <div>{{ rooms.room_text }}</div>
-        <hr>
         <div> 상세 정보 </div>
-        <div>집 구성</div><div>{{ rooms.room_layout }}</div>
-        <div>거주인원/평수</div><div>{{ rooms.room_size }}</div>
-        <div>세대 추가 옵션</div><div>{{ rooms.room_default_option }}</div>
-        <div>월 이용 정상가</div><div>{{ rooms.room_price }}</div>
-        <div>월 이용 할인가</div><div>{{ rooms.room_discounted_price }}</div>
-        <div>비고</div><div>{{ rooms.room_note }}</div>
-        <div>기타</div><div>{{ rooms.room_any }}</div>
+        <div>집 구성</div><div>{{ rooms.roomType }} {{ rooms.gender }}</div>
+        <div>평수</div><div>{{ rooms.py }}㎡</div>
+        <div>세대 옵션</div><div>{{ rooms.roomOption }}</div>
+        <div>보증금</div><div>{{ rooms.deposit }}</div>
+        <div>월세</div><div>{{ rooms.rentFee }}</div>
+        <div>url</div><div>{{ rooms.url }}</div>
         <hr>
         <div> 위치 및 교통 </div>
+        <div>
+            {{ rooms.region }}
+        </div>
         <div id="maps"></div>
     </div>
 </div>
