@@ -3,7 +3,8 @@
 
 ### ■ 프로젝트 기간
  - 1차 : 2023.01.08 - 2024.01.17
-
+ - 2차 : 2023.02.21 - 2024.03.21
+ 
 ## ☑ 사용기술
 <img alt="이미지명" src ="https://img.shields.io/badge/PYTHON-3776AB.svg?&style=for-the-badge&logo=PYTHON&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/visual studio code-007ACC.svg?&style=for-the-badge&logo=visualstudiocode&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/google colab-F9AB00.svg?&style=for-the-badge&logo=googlecolab&logoColor=white"/>
 
@@ -11,9 +12,10 @@
 ---
 |이름|역할|
 |--|--|
-|장영지|PM, 프론트엔드, 백엔드|
-|김유진|웹 스크래핑|
+|장영지|PM, 데이터분석, 프론트엔드, 백엔드|
+|김유진|데이터분석, 웹 스크래핑|
 |공명윤|프론트엔드, 백엔드|
+|박요한|데이터분석|
 
 ### ■ 사이트 : [CO Love House](http://192.168.10.245:8000/)
 ### ■ 프로젝트 소개
