@@ -1,7 +1,9 @@
 # CO Love House 프로젝트♡
+
 ### ■ 팀명 : 속세를 떠나고 싶다
 
 ### ■ 프로젝트 기간
+---
  - 1차 : 2023.01.08 - 2024.01.17
  - 2차 : 2023.02.21 - 2024.03.21
  
@@ -18,21 +20,38 @@
 |박요한|데이터분석|
 
 ### ■ 사이트 : [CO Love House](http://192.168.10.245:8000/)
+
 ### ■ 프로젝트 소개
+---
    1. 1~2인 가구를 위한 주거 공간을 빠르게 검색하기 위한 코리빙하우스 플랫폼
    2. 투어하기 예약 및 이용자들의 후기 확인
    3. 커뮤니티에서 글쓰기, 검색, 삭제 기능
    4. 관리자 - 회원관리, 매물관리
+
+
 ### ■ [스케쥴러 JIRA 사용](https://waity0912.atlassian.net/jira/software/projects/COLH/boards/2/timeline?timeline=MONTHS)
 
+
+### ■ 플랫폼 reference
+- [동거동락](https://dgdr.co.kr/main/main.html)
+- [쉐어하우스 우주](https://www.woozoo.kr/)
+
 ### 📚 웹 스크래핑 대상
----
 - [디어스 판교](https://dears.kr/ko)
 - [디어스 명동](https://www.dearsmd.com/)
 - [맹그로브](https://mangrove.city/)
 - [하품](https://www.hapoom.co/)
 - [커먼시티](https://www.commontown.co/ko)
 - [에피소드](https://www.epsd.co.kr/ep369/)
+- [셀립](https://celib.kr/)
+- [업플로](https://www.upflo.kr/about)
+- [에피소드](https://www.epsd.co.kr/)
+- [로컬스티치](https://localstitch.kr/)
+- [콤피](http://comfi-stay.com/)
+- [홈즈스튜디오](https://www.homes-studio.kr/Urbanhouse_)
+- [헤이](https://www.heyy.co.kr/spotView/7)
+- [리브라이프](https://live-life.kr/)
+
 
 
 ### 📚 사용 collection
@@ -59,8 +78,16 @@
 ### ■ 팀원별 구현 기능
 ![image](https://github.com/btg1631/project_coliving/blob/main/images/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EB%A6%AC%EC%8A%A4%ED%8A%B8(%EC%97%85%EB%AC%B4%EB%82%B4%EC%97%AD).png)
 
-### 🎥 [구현 영상](https://www.youtube.com/watch?v=DL7DeUd5Dhg)
-!1차 : [구현영상 첫화면](https://github.com/btg1631/project_coliving/blob/main/images/%EA%B5%AC%ED%98%84%EC%98%81%EC%83%81.png)
+### 🎥 [1차 구현 영상](https://www.youtube.com/watch?v=DL7DeUd5Dhg)
+![구현영상 첫화면](./images/구현영상.png)
+
+### 🎥 [2차 구현 영상](https://www.youtube.com/watch?v=3dtHwzV1gOg&feature=youtu.be)
+![구현영상 첫화면](./images/2차구현영상.png)
+
+
+
+
+
 
 ### 📚 주요 기능
 **<사용자>**
