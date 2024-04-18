@@ -60,7 +60,8 @@
 ![image](https://github.com/btg1631/project_coliving/blob/main/images/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EB%A6%AC%EC%8A%A4%ED%8A%B8(%EC%97%85%EB%AC%B4%EB%82%B4%EC%97%AD).png)
 
 ### 🎥 [구현 영상](https://www.youtube.com/watch?v=DL7DeUd5Dhg)
-![구현영상 첫화면](https://github.com/btg1631/project_coliving/blob/main/images/%EA%B5%AC%ED%98%84%EC%98%81%EC%83%81.png)
+!1차 : [구현영상 첫화면](https://github.com/btg1631/project_coliving/blob/main/images/%EA%B5%AC%ED%98%84%EC%98%81%EC%83%81.png)
+!2치 : [구현영상] https://www.youtube.com/watch?v=3dtHwzV1gOg
 
 ### 📚 주요 기능
 **<사용자>**
