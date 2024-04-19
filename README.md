@@ -74,14 +74,13 @@
 
 ## 💻 프로젝트 진행
 - [Naming Rule](https://docs.google.com/spreadsheets/d/1pgseXMtVbRS0Qu6j2i6_T3EC-cICqrJl/edit#gid=1553145129) 
-
-![image](images/naming_rules.png)
 - [Program List](https://docs.google.com/spreadsheets/d/177dosTpc5QXqKI9N2E94pvYRHJ3T5lHF/edit#gid=389956398)
 - [Screen Definition](https://app.diagrams.net/#G13JhyVSufPlX4SV4WNJss9p5QtiRxywyE)
 - [의뢰서](https://docs.google.com/presentation/d/1jXnKIb6BObgcawwsQxdnuJaKzaEq_aynAtOu1oHNn7U/edit#slide=id.p1)
-- [DB구성](images/main.png) ![ERD](./images/main.png)
+- [DB구성](images/main.png)
 - [요구사항 정의서](https://docs.google.com/spreadsheets/d/1PaTjeLzbWQcow_RhyxXIo4exBDXDtT7A/edit#gid=1623924950)
-![image](./images/화면정의서.png)
+
+![흐름도](./images/main.png)
 ---
 
 ### ■ 팀원별 구현 기능(2차)
@@ -93,6 +92,12 @@
 |박요한||토픽 트렌드 분석(뉴스)|
 
 
+### ■ 데이터 분석 결과
+- 
+
+
+
+
 ---
 ### 🎥 [1차 구현 영상](https://www.youtube.com/watch?v=DL7DeUd5Dhg)
 ![구현영상 첫화면](./images/구현영상.png)
@@ -100,20 +105,3 @@
 ### 🎥 [2차 구현 영상](https://www.youtube.com/watch?v=3dtHwzV1gOg&feature=youtu.be)
 ![구현영상 첫화면](./images/2차구현영상.png)
 
-
-
-
-----
-
-### 📚 주요 기능
-**<사용자>**
-- 회원가입 → 로그인 → 방 검색 → 투어하기 또는 예약 → 마이페이지 → 예약 조회 및 수정, 삭제
-- 마이페이지(회원 기본정보 확인 및 수정)
-- 커뮤니티 글 쓰기, 수정, 삭제
-
-**<기업회원>**
-- 마이페이지, 매물등록 및 관리
-
-```
-
-```
