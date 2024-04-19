@@ -9,7 +9,9 @@
  
 ## ☑ 사용기술
 <img alt="이미지명" src ="https://img.shields.io/badge/PYTHON-3776AB.svg?&style=for-the-badge&logo=PYTHON&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/visual studio code-007ACC.svg?&style=for-the-badge&logo=visualstudiocode&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/google colab-F9AB00.svg?&style=for-the-badge&logo=googlecolab&logoColor=white"/>
+
 <img alt="이미지명" src ="https://img.shields.io/badge/selenium-43B02A.svg?&style=for-the-badge&logo=selenium&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/jinja-B41717.svg?&style=for-the-badge&logo=jinja&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/pandas-150458.svg?&style=for-the-badge&logo=pandas&logoColor=white"/>
+
 <img alt="이미지명" src ="https://img.shields.io/badge/slack-4A154B.svg?&style=for-the-badge&logo=slack&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/jirasoftware-0052CC.svg?&style=for-the-badge&logo=jirasoftware&logoColor=white"/>
 
 
