@@ -33,6 +33,7 @@
 
 
 ### ■ [스케쥴러 JIRA 사용](https://waity0912.atlassian.net/jira/software/projects/COLH/boards/2/timeline?timeline=MONTHS)
+![jira](./images/JIRA.png)
 
 
 ### ■ 플랫폼 reference
@@ -71,6 +72,7 @@
 
 ## 💻 프로젝트 진행
 - [Naming Rule](https://docs.google.com/spreadsheets/d/1pgseXMtVbRS0Qu6j2i6_T3EC-cICqrJl/edit#gid=1553145129) 
+
 ![image](images/naming_rules.png)
 - [Program List](https://docs.google.com/spreadsheets/d/177dosTpc5QXqKI9N2E94pvYRHJ3T5lHF/edit#gid=389956398)
 - [Screen Definition](https://app.diagrams.net/#G13JhyVSufPlX4SV4WNJss9p5QtiRxywyE)
