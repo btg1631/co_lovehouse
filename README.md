@@ -8,8 +8,9 @@
  - 2차 : 2023.02.21 - 2024.03.21
  
 ## ☑ 사용기술
-<img alt="이미지명" src ="https://img.shields.io/badge/PYTHON-3776AB.svg?&style=for-the-badge&logo=PYTHON&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/visual studio code-007ACC.svg?&style=for-the-badge&logo=visualstudiocode&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/google colab-F9AB00.svg?&style=for-the-badge&logo=googlecolab&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/selenium-43B02A.svg?&style=for-the-badge&logo=selenium&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/jinja-B41717.svg?&style=for-the-badge&logo=jinja&logoColor=white"/>
- <img alt="이미지명" src ="https://img.shields.io/badge/slack-4A154B.svg?&style=for-the-badge&logo=slack&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/jirasoftware-0052CC.svg?&style=for-the-badge&logo=jirasoftware&logoColor=white"/>
+<img alt="이미지명" src ="https://img.shields.io/badge/PYTHON-3776AB.svg?&style=for-the-badge&logo=PYTHON&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/visual studio code-007ACC.svg?&style=for-the-badge&logo=visualstudiocode&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/google colab-F9AB00.svg?&style=for-the-badge&logo=googlecolab&logoColor=white"/>
+<img alt="이미지명" src ="https://img.shields.io/badge/selenium-43B02A.svg?&style=for-the-badge&logo=selenium&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/jinja-B41717.svg?&style=for-the-badge&logo=jinja&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/pandas-150458.svg?&style=for-the-badge&logo=pandas&logoColor=white"/>
+<img alt="이미지명" src ="https://img.shields.io/badge/slack-4A154B.svg?&style=for-the-badge&logo=slack&logoColor=white"/> <img alt="이미지명" src ="https://img.shields.io/badge/jirasoftware-0052CC.svg?&style=for-the-badge&logo=jirasoftware&logoColor=white"/>
 
 
 ### 구성원
@@ -80,15 +81,15 @@
 ---
 
 ### ■ 팀원별 구현 기능(2차)
-|이름|구현 기능|
-|--|--|
-|장영지|데이터 분석 : |
-|김유진|데이터 분석 : |
-|공명윤|javascript fetch 적용|
-|박요한|데이터 분석 : |
+|이름|웹|데이터 분석|
+|--|--|--|
+|장영지|google chart 적용|지역당 평균 가격(보증금, 월세) 분석, roomType별 가격 분포 비교 분석, 코리빙과 일반 부동산 매물 평균 매출시장규모 분석|
+|김유진||평당 평균 가격 차이에 대한 정규분포 검증|
+|공명윤|javascript fetch, rich editor 적용||
+|박요한||토픽 트렌드 분석(뉴스)|
 
 
-
+---
 ### 🎥 [1차 구현 영상](https://www.youtube.com/watch?v=DL7DeUd5Dhg)
 ![구현영상 첫화면](./images/구현영상.png)
 
